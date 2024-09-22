@@ -5,6 +5,7 @@
 .nitro
 .cache
 dist
+.firebase
 
 # Node dependencies
 node_modules
@@ -23,4 +24,7 @@ logs
 .env.*
 !.env.example
 
-credentials/
+credentials
+
+# ESLint
+.eslintcache

@@ -1,22 +1,26 @@
-import { getCurrentUser } from "vuefire";
+import { getCurrentUser } from 'vuefire'
 
 // middleware/auth.global.ts
 export default defineNuxtRouteMiddleware(async (to) => {
-  const user = await getCurrentUser();
-  if (to.path === "/auth" && user) {
+  const user = await getCurrentUser()
+  console.error('[DEBUG] user', user)
+
+  if (to.path === '/auth' && user) {
+    console.error('[DEBUG] Go to home')
     return navigateTo({
-      path: "/",
-      query: {
-        redirect: to.fullPath,
-      },
-    });
+      path: '/'
+    })
   }
-  if (to.path !== "/auth" && !user) {
+
+  if (to.path !== '/auth' && !user) {
+    console.error('[DEBUG] Go to auth')
     return navigateTo({
-      path: "/auth",
+      path: '/auth',
       query: {
-        redirect: to.fullPath,
-      },
-    });
+        redirect: to.fullPath
+      }
+    })
   }
-});
+
+  console.error('[DEBUG] You passed!')
+})
